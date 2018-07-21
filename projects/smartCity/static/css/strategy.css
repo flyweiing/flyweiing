@@ -1,0 +1,76 @@
+/**
+ * 策略管理页面样式
+ * @date    2017-11-10 14:53:14
+ */
+
+.main {
+	left: 0;
+	padding: 10px 20px;
+	background-color: #fff;
+}
+
+.list-table .name, 
+.list-table .effective-date, 
+.list-table .expiration-date, 
+.list-table .operation {
+	width: 25%;
+}
+
+#win-add, #win-detail {
+	display: none;
+}
+
+.win-content {
+	padding: 8px 15px 0 15px;
+}
+
+.form-group {
+	display: inline-block;
+	float: left;
+    width: 300px;
+    height: 65px;
+    line-height: 65px;
+}
+
+.form-group label {
+	margin: 0 20px;
+}
+
+.detail-operation .fa {
+	margin: 0 8px;
+	font-size: 14px;
+}
+
+.input-slider {
+	display: inline-block;
+    width: 130px;
+    height: 30px;
+}
+
+
+.input-slider .slider {
+	display: inline-block;
+	position: relative;
+	top: 6px;
+	left: -12px;
+}
+
+.modify-item .detail-operation .fa {
+	font-size: 20px;
+}
+
+.modify-item .detail-save, .modify-item .detail-cancel {
+	display: inline-block;
+	color: #6ab8f1;
+}
+
+.modify-item .detail-modify, .modify-item .detail-delete {
+	display: none;
+}
+
+a.detail-save, a.detail-cancel {
+	display: none;
+}
+a.detail-modify, a.detail-delete {
+	display: inline-block;
+}

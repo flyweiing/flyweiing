@@ -1,0 +1,111 @@
+/**
+ * 摄像头管理页面样式
+ */
+
+.main {
+	background-color: #81aae8;
+    padding-left: 15px;
+}
+
+.left-menu dd {
+	display: block;
+}
+
+/*摄像头样式*/
+.camera-title {
+	display: inline-block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.camera-video {
+	display: inline-block;
+    float: left;
+    width: 80%;
+    height: 500px;
+    border: 1px solid #fff;
+}
+
+/*摄像机云台控制样式*/
+.camera-controllers {
+	display: inline-block;
+    float: left;
+    width: 15%;
+    min-width: 160px;
+    height: 500px;
+    border: 1px solid #fff;
+    border-left: none;
+}
+
+.ctr-title {
+    display: inline-block;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 17px;
+}
+
+.ptz-dir {
+    display: inline-block;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    left: 50%;
+    margin-left: -55px;
+    margin-top: 8px;
+}
+
+.direction {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 3px;
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.direction .left-up,
+.direction .left-down,
+.direction .right-up,
+.direction .right-down {
+    transform:rotate(40deg);
+    -ms-transform:rotate(40deg);     /* IE 9 */
+    -moz-transform:rotate(40deg);    /* Firefox */
+    -webkit-transform:rotate(40deg); /* Safari 和 Chrome */
+    -o-transform:rotate(40deg);  /* Opera */
+}
+
+.direction:hover {
+    color: #999;
+}
+
+.operation {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 25px;
+    left: 50%;
+    margin-left: -54px;
+    margin-top: 8px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.operation i {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.operation i:hover {
+    color: #999;
+}

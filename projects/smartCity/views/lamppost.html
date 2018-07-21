@@ -1,0 +1,100 @@
+<link rel="stylesheet" type="text/css" href="../static/css/lamppost.css">
+
+<div class="main">
+    <div class="count-box">
+        <div class="each-count lamp-count" data-left="1">
+            <div class="count-title"><span>智能</span><span>照明</span></div>
+            <div class="count-details"><i>3</i><span>当前开灯数</span></div>
+            <div class="count-details"><i>0</i><span>故障数</span></div>
+        </div>
+        <div class="each-count wifi-count" data-left="21">
+            <div class="count-title"><span>公共</span><span>WIFI</span></div>
+            <div class="count-details"><i>4</i><span>当前人数</span></div>
+            <div class="count-details"><i>5</i><span>人均流量</span></div>
+        </div>
+        <div class="each-count help-count" data-left="41">
+            <div class="count-title"><span>紧急</span><span>求助</span></div>
+            <div class="count-details"><i>0</i><span>智能告警</span></div>
+            <div class="count-details"><i>0</i><span>呼叫求助</span></div>
+        </div>
+        <div class="each-count msg-count" data-left="61">
+            <div class="count-title"><span>信息</span><span>发布</span></div>
+            <div class="count-details"><i>6</i><span>播放中</span></div>
+            <div class="count-details"><i>0</i><span>故障数</span></div>
+        </div>
+        <div class="each-count aura-count" data-left="81">
+            <div class="count-title"><span>氛围</span><span>照明</span></div>
+            <div class="count-details"><i>6</i><span>当前开灯数</span></div>
+            <div class="count-details"><i>0</i><span>故障数</span></div>
+        </div>
+        <div class="each-count usb-count" data-left="101">
+            <div class="count-title"><span>USB</span><span>充电</span></div>
+            <div class="count-details"><i>1</i><span>当前人数</span></div>
+            <div class="count-details"><i>0</i><span>故障数</span></div>
+        </div>
+        <div class="each-count charger-count" data-left="121">
+            <div class="count-title"><span>汽车</span><span>充电</span></div>
+            <div class="count-details"><i>0</i><span>当前车辆</span></div>
+            <div class="count-details"><i>0</i><span>故障数</span></div>
+        </div>
+    </div>
+
+    <div class="resources-box">
+        <div class="resources-title"><span>资源列表</span></div>
+        <div class="resources-content">
+            <div class="resources-search">
+                <input id="resources-input" type="text" placeholder="请输入资源名称/编号">
+            </div>
+            <div class="resources-kind">
+                <i class="fa fa-angle-left kind-left"></i>
+                <div class="resources-img img-light active" data-item="1" title="智慧灯杆"><img src="../static/img/light.png" alt=""></div>
+                <div class="resources-img img-camera" data-item="2" title="摄像机"><img src="../static/img/camera.png" alt=""></div>
+                <div class="resources-img img-led" data-item="3" title="LED显示屏"><img src="../static/img/led.png" alt=""></div>
+                <div class="resources-img img-wifi" data-item="4" title="WIFI"><img src="../static/img/wifi.png" alt=""></div>
+                <div class="resources-img img-charger" data-item="5" title="充电桩"><img src="../static/img/charger.png" alt=""></div>
+                <div class="resources-img img-airing" data-item="6" title="语音广播"><img src="../static/img/airing.png" alt=""></div>
+                <div style="display: none;" class="resources-img img-help" data-item="7" title="一键求助"><img src="../static/img/help.png" alt=""></div>
+                <div style="display: none;" class="resources-img img-rgb" data-item="8" title="RGB氛围灯"><img src="../static/img/rgb.png" alt=""></div>
+                <div style="display: none;" class="resources-img img-usb" data-item="9" title="USB手机充电"><img src="../static/img/usb.png" alt=""></div>
+                <i class="fa fa-angle-right kind-right"></i>
+            </div>
+        </div>
+        <div class="rescources-list">
+              <div class="list-header">
+                  <div>智慧灯杆名称</div>
+                  <div>编号</div>
+                  <div>状态</div>
+              </div>
+              <div class="list-content">
+              </div>
+        </div>  
+    </div> 
+    <div class="led-program">
+        <div class="program-title"><span>显示屏节目</span><i class="fa fa-close"></i></div>
+        <div class="program-content">
+          <!-- <div class="program-item program1" data-value="1"></div> -->
+          <img class="program-img" src="../static/img/program1.jpg" data-value="1">
+        </div>
+    </div>
+    <div class="surveillance">
+        <div class="surveillance-title"><span>视频监控</span><i class="fa fa-close"></i></div>
+        <div id="cameraVideo" class="video-surveillance">
+        </div>
+    </div>
+    <div class="resources-control">
+        <div class="control-title"><span></span><i class="fa fa-close"></i></div>
+        <div class="control-box">
+
+        </div>
+    </div>
+    <div id="container"></div>
+</div>
+
+  <!-- <div class="win-footer"></div> -->
+</div>
+
+
+
+<script src="../static/js/basejs/webVideoCtrl.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hTqWcNaAQFKV9DZwItx0LvgN"></script>
+<script src="../static/js/lamppost.js" type="text/javascript"></script>

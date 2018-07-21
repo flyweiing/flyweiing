@@ -1,0 +1,65 @@
+<!-- 策略管理页面 -->
+
+<link rel="stylesheet" type="text/css" href="../static/css/strategy.css">
+
+<div class="main" id="container">
+
+    <div class="operation-panel">
+        <button id="add-strategy"><i class="fa fa-plus"></i>添加策略</button>
+    </div>
+    <div class="list-panel">
+        <table class="list-table">
+          <thead>
+            <tr>
+                <th class="name">策略名称</th>
+                <th class="effective-date">生效时间</th>
+                <th class="expiration-date">失效时间</th>
+                <th class="operation">操作</th>
+            </tr>
+          </thead>
+          <tbody class="strategy-list">
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 策略操作modal框 -->
+<div id="win-add">
+    <div class="win-content">
+        <div class="form-group">
+          <label for="">策略名称：</label>
+          <input name="strategyname" class="form-input" type="text" placeholder="输入策略名称">
+        </div>
+        <div class="form-group">
+          <label for="">生效时间：</label>
+          <input id="begin-day" class="form-input" type="text" placeholder="选择生效时间">
+        </div>
+        <div class="form-group">
+          <label for="">失效时间：</label>
+          <input id="end-day" class="form-input" type="text" placeholder="选择失效时间">
+        </div>
+    </div>
+</div>
+
+<div id="win-details">
+    <div class="win-content">
+        <div class="operation-panel">
+            <button id="add-detail"><i class="fa fa-plus"></i>添加</button>
+        </div>
+        <div class="list-panel">
+            <table class="list-table">
+              <thead>
+                <tr>
+                    <th class="detail-time">时间</th>
+                    <th class="detail-brightness">亮度</th>
+                    <th class="detail-operation">操作</th>
+                </tr>
+              </thead>
+              <tbody class="details-list">
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/strategy.js" type="text/javascript"></script>

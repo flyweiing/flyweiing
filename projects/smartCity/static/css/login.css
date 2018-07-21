@@ -1,0 +1,141 @@
+/*!
+ * smartCity v1.0.0
+ * Copyright 2004-2017 unilumin
+ * Login Css
+ */
+
+@import url("common.css");
+@import url("../font-awesome-4.7.0/css/font-awesome.min.css");
+
+body {background: url("../img/bg_login.png") no-repeat; background-size: cover;}
+
+.login-box {
+    position: absolute;
+    top: 16%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 500px;
+    height: 475px;
+    margin: 0 auto;
+}
+
+.title {
+    width: 500px;
+    height: 90px;
+    background: url("../img/bg_title.png") no-repeat;
+}
+
+.title img {
+    display: inline-block;
+    position: absolute;
+    margin: 0 auto;
+    top: 39px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.form-box {
+    display: inline-block;
+    position: absolute;
+    margin: 0 auto;
+    top: 106px;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+    width: 340px;
+    height: 278px;
+    background: url(../img/bg_form.png) no-repeat;
+}
+
+.wandeng {
+    display: inline-block;
+    position: absolute;
+    margin: 0 auto;
+    top: 398px;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+}
+
+.textbox {
+    width: 340px;
+    height: 50px;
+    padding: 40px 0 0px 50px;
+}
+
+.inputbox {
+    width: 170px;
+    height: 30px;
+    float: right;
+    margin-right: 90px;
+    padding-left: 8px;
+    font-size: 15px;
+    color: #6c7576;
+    border: 0;
+    background-color: transparent;
+}
+
+input[name=password] {
+    margin-top: 6px;
+}
+
+.submit {
+	display: block;
+    width: 235px;
+    height: 32px;
+    text-align: center;
+    border: 0;
+    border-radius: 6px;
+    margin: 6px 0 0 55px;
+    font-family: 'microsoft yahei';
+    font-size: 18px;
+    color: #5d7177;
+    background-color: #9ce7ff;
+    cursor: pointer;
+    box-shadow: 3px 3px 6px #999;
+}
+
+.submit:hover {
+	background-color: #8ed9ff;
+}
+
+.tips-box {
+    width: 260px;
+    color: red;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    font-size: 16px;
+    margin: 13px 0 0 42px;
+}
+
+.loading {
+    color: #fff;
+}
+
+.loading em {
+    font-size: 21px;
+}
+
+.footer {
+	position: absolute;
+	right: 0;
+	bottom: 15px;
+	left: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.capslock{
+    display: none;
+    position: absolute;
+    right: 118px;
+    bottom: 100px;
+    width: 95px;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    background-color: #08a5ef;
+}

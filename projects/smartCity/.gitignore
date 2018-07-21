@@ -1,0 +1,17 @@
+.DS_Store
+static/.DS_Store
+static/*.swp
+models/*.swp
+controllers/*.swp
+smartCity
+static/css/*.css~
+views/*.html~
+/*.exe
+/lastupdate.tmp
+/*.pprof
+/*.memprof
+/*.exe~
+/swagger.zip
+/swagger
+logs/
+.idea/

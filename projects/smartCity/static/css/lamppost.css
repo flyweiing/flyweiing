@@ -1,0 +1,624 @@
+/**
+ * 灯杆管理页面样式
+ * @date    2017-11-10 14:53:14
+ */
+
+#container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/*-----------------------------------------统计框样式-------------------------------------------------*/
+
+.count-box {
+    position: absolute;
+    width: 100%;
+    height: 14%;
+    overflow: hidden;
+}
+
+.each-count {
+    display: inline-block;
+    position: absolute;
+    top: 8%;
+    width: 18%;
+    height: 75%;
+    background: url(../img/bg_transparent.png);
+    border: 2px solid #183a52;
+    border-radius: 5px;
+    z-index: 5;
+}
+
+.count-title {
+    display: inline-block;
+    position: absolute;
+    width: 24%;
+    height: 100%;
+    background: url(../img/bg_info.png);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+    color: #3a6384;
+    font-size: 15px;
+}
+
+.count-title span,
+.count-details i,
+.count-details span {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 33%;
+    top: -40%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.count-title span:last-child,
+.count-details span {
+    top: 40%;
+}
+
+.count-details {
+    display: inline-block;
+    position: absolute;
+    left: 24%;
+    width: 37%;
+    height: 100%;
+    text-align: center;
+    color: #6890b1;
+    font-size: 14px;
+}
+
+.count-details:last-child {
+    left: 61%;
+    border-left: 1px solid #1b3245;
+}
+
+.lamp-count {
+    left: 1%;
+}
+
+.wifi-count {
+    left: 21%;
+}
+
+.help-count {
+    left: 41%;
+}
+
+.msg-count {
+    left: 61%;
+}
+
+.aura-count {
+    left: 81%;
+}
+.usb-count {
+    left: 101%;
+}
+.charger-count {
+    left: 121%;
+}
+/*------------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------资源列表样式-------------------------------------------------*/
+.resources-box {
+    display: inline-block;
+    position: absolute;
+    width: 306px;
+    top: 16%;
+    bottom: 10px;
+    background: url("../img/bg_transparent.png") repeat;
+    z-index: 5;
+}
+
+.resources-title {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 3px solid #244558;
+    border-right: 3px solid #0b2738;
+    border-bottom: 2px solid #0b2738;
+    background: url(../img/bg_resources.png);
+    color: #366c9f;
+    font-size: 14px;
+}
+
+.resources-title span {
+    margin-left: 10px;
+}
+
+.resources-search {
+    display: inline-block;
+    width: 280px;
+    height: 44px;
+    margin: 3px 0 0 13px;
+    background: url("../img/resources-search.png") no-repeat;
+    cursor: pointer;
+}
+
+#resources-input {
+    display: inline-block;
+    position: relative;
+    width: 220px;
+    height: 20px;
+    top: 10px;
+    left: 11px;
+    color: #366c9f;
+    border: 0;
+    background-color: transparent;
+}
+
+.resources-kind {
+    display: inline-block;
+    width: 100%;
+    margin: 3px 0;
+    text-align: center;
+}
+
+.resources-img {
+    display: inline-block;
+    float: left;
+    width: 37px;
+    height: 37px;
+    line-height: 37px;
+    margin: 0 4px;
+    background: url(../img/bg_function.png);
+    cursor: pointer;
+}
+
+.resources-img:hover,
+.resources-kind .active {
+    background: url(../img/bg_function_active.png);
+}
+
+.resources-img img {
+    vertical-align: middle;
+}
+
+
+.resources-kind i {
+    display: inline-block;
+    float: left;
+    height: 37px;
+    line-height: 37px;
+    margin: 0 4px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #366c9f;
+    cursor: pointer;
+}
+
+.list-content {
+    color: #8eadc8;
+}
+
+.list-item,
+.list-header {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    border-bottom: 2px solid #576f82;
+}
+
+.list-header {
+    color: #366c9f;
+}
+
+.list-item {
+    cursor: pointer;
+}
+
+.list-item:hover {
+    background: #153552;
+}
+
+.list-header div,
+.list-item div {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    width: 23%;
+    text-align: left;
+}
+
+.list-header div:first-child,
+.list-item div:first-child {
+    width: 48%;
+    margin-left: 10px;
+}
+
+.list-content .selected {
+    background: url(../img/bg_active.png);
+}   
+/*--------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------显示屏可视化、视频监控---------------------------------------*/
+.led-program,
+.surveillance {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    width: 19%;
+    border-radius: 5px;
+    z-index: 5;
+}
+
+.led-program {
+    top: 16%;
+    height: 45%;
+}
+
+.surveillance {
+    top: 63%;
+    bottom: 10px;
+}
+
+.program-title,
+.surveillance-title,
+.control-title {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    border-top: 3px solid #244558;
+    border-right: 2px solid #0b2738;
+    border-bottom: 2px solid #0b2738;
+    border-left: 2px solid #244558;
+    background: url("../img/bg_resources.png");
+    color: #366c9f;
+    font-size: 14px;
+}
+
+.program-title span,
+.surveillance-title span,
+.control-title span {
+    margin-left: 10px;
+}
+
+.program-title i,
+.surveillance-title i,
+.control-title i {
+    display: inline-block;
+    float: right;
+    margin: 7px 7px 0 0;
+    cursor: pointer;
+}
+
+.program-content,
+.video-surveillance {
+    display: inline-block;
+    position: absolute;
+    top: 35px;
+    right: 1%;
+    bottom: 0px;
+    width: 97%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: url(../img/bg_transparent.png);
+}
+
+.program-img {
+    display: block;
+/*    width: 115px;*/
+    height: 100%;
+    margin: 0 auto;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------资源控制-------------------------------------------------*/
+.resources-control {
+    display: none;
+    position: absolute;
+    top: 16%;
+    right: 21%;
+    bottom: 10px;
+    left: 325px;
+    z-index: 5;
+}
+
+.control-box {
+    display: inline-block;
+    position: absolute;
+    top: 35px;
+    left: 1%;
+    bottom: 0px;
+    width: 99%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: url(../img/bg_transparent.png);
+}
+
+/*智能调光*/
+.lamp-operate {
+    display: inline-block;
+    width: 100%;
+    height: 33%;
+    color: #366c9f;
+}
+
+.control-box .dimming {
+    background: url(../img/bg_active.png);
+}
+
+.lamp-operate  label {
+    display: inline-block;
+    float: left;
+    width: 80%;
+    margin: 5px 0 0 8px;
+    font-size: 16px;
+}
+
+#switch {
+    display: inline-block;
+    position: relative;
+    top: 25%;
+    left: -57%;
+    width: 68px;
+    height: 31px;
+    border: none;
+    cursor: pointer;
+}
+
+.switch-on {
+    background: url(../img/on.png);
+}
+
+.switch-off {
+    background: url(../img/off.png);
+}
+
+.dimming-slider {
+    position: relative;
+    width: 360px;
+    top: 50%;
+    left: 50%;
+    margin: -11px 0 0 -180px;
+}
+
+.slider-rulelabel span {
+    color: #366c9f;
+}
+
+#cameraControl {
+    display: inline-block;
+    width: 100%;
+    height: 75%;
+}
+
+.video-item {
+    display: inline-block;
+    float: left;
+    width: 25%;
+    height: 24%;
+    color: #366c9f;
+}
+
+.video-item label {
+    display: block;
+    text-align: center;
+}
+
+.directions {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 15px 52px;
+    cursor: pointer;
+}
+
+.direction{
+    display: inline-block;
+    float: left;
+    width: 20px;
+    height: 20px;
+
+}
+
+.lamp-details {
+    display: inline-block;
+    position: relative;
+    left: 2%;
+    width: 48%;
+    height: 35px;
+    line-height: 35px;
+}
+
+/*云台图标*/
+.directions .left-up {
+    background: url(../img/ptz_dir.png) 0 0;
+}
+.directions .up {
+    background: url(../img/ptz_dir.png) 40px 0;
+}
+.directions .right-up {
+    background: url(../img/ptz_dir.png) 20px 0;
+}
+.directions .left {
+    background: url(../img/ptz_dir.png) 0 40px;
+}
+.directions .center {
+    background: url(../img/ptz_dir.png) 40px 40px;
+}
+.directions .right {
+    background: url(../img/ptz_dir.png) 20px 40px;
+}
+.directions .left-down {
+    background: url(../img/ptz_dir.png) 0 20px;
+}
+.directions .down {
+    background: url(../img/ptz_dir.png) 40px 20px;
+}
+.directions .right-down {
+    background: url(../img/ptz_dir.png) 20px 20px;
+}
+/*云台悬浮图标*/
+.directions .left-up:hover {
+    background: url(../img/ptz_dir_hover.png) 0 0;
+}
+.directions .up:hover {
+    background: url(../img/ptz_dir_hover.png) 40px 0;
+}
+.directions .right-up:hover {
+    background: url(../img/ptz_dir_hover.png) 20px 0;
+}
+.directions .left:hover {
+    background: url(../img/ptz_dir_hover.png) 0 40px;
+}
+.directions .center:hover {
+    background: url(../img/ptz_dir_hover.png) 40px 40px;
+}
+.directions .right:hover {
+    background: url(../img/ptz_dir_hover.png) 20px 40px;
+}
+.directions .left-down:hover {
+    background: url(../img/ptz_dir_hover.png) 0 20px;
+}
+.directions .down:hover {
+    background: url(../img/ptz_dir_hover.png) 40px 20px;
+}
+.directions .right-down:hover {
+    background: url(../img/ptz_dir_hover.png) 20px 20px;
+}
+
+
+.ptz-dir, .operation {
+    background: #122d44;
+}
+
+.speed select {
+    width: 50px;
+    margin: 15px 59px;
+}
+
+.ptz-dir {
+    border-bottom-left-radius: 5px;
+}
+
+
+.player {
+    text-align: center;
+}
+
+.player:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.player .play {
+    display: inline-block;
+    font-size: 37px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.player .play:hover {
+    color: #073663;
+}
+
+.lens {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 27px;
+    line-height: 27px;
+}
+
+.lens span {
+    margin-right: 7px;
+}
+
+.lens i {
+    font-size: 14px;
+    margin-right: 7px;
+    color: #101b27;
+    cursor: pointer;
+}
+
+.lens i:hover {
+    color: #366c9f;
+}
+
+/*更换图片*/
+.upload-img, 
+.led-operate {
+    display: inline-block;
+    width: 28%;
+    height: 100%;
+}
+
+.preview-img {
+    display: inline-block;
+    width: 44%;
+    height: 100%;
+    text-align: center;
+    background-color: #1a518a;
+    overflow: auto;
+}
+
+
+.img-btn {
+    display: block;
+    position: relative;
+    /*top: 77%;*/
+    width: 88%;
+    height: 40px;
+    margin: 8px auto;
+    border: none;
+    color: #fff;
+    background-color: #1a518a;
+    cursor: pointer;
+}
+
+.img-btn:hover {
+    background-color: #062d4e;
+}
+
+#send-program,
+#stop-program {
+    top: 75%;
+}
+
+
+.img-size {
+    display: block;
+    position: relative;
+    width: 88%;
+    height: 40px;
+    line-height: 40px;
+    margin: 8px auto;
+    background-color: #133e6e;
+    font-size: 15px;
+    color: #366c9f;
+}
+
+.img-size span {
+    margin-left: 5%;
+}
+
+#input-file {
+    display: inline-block;
+    position: absolute;
+    width: 27%;
+    height: 40px;
+    top: 104px;
+    opacity: 0;
+    z-index: 1000;
+}
+
+
+/*--------------------------------------------------------------------------------------------------

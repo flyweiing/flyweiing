@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="../static/css/camera.css">
+
+<div class="main">
+    <div class="camera-title"><span>十米灯杆摄像机</span></div>
+    <div class="camera-video">
+        <div id="cameraVideo" class="plugin"></div>
+    </div>
+    <div class="camera-controllers">
+        <div class="ctr-title">云台控制</div>
+        <div class="ptz-dir">
+            <span class="direction" data-ptz="5" title="左上"><i class="left-up fa fa-chevron-circle-left"></i></span>
+            <span class="direction" data-ptz="1" title="向上"><i class="fa fa-chevron-circle-up"></i></span>
+            <span class="direction" data-ptz="7" title="右上"><i class="right-up fa fa-chevron-circle-up"></i></span>
+            <span class="direction" data-ptz="3" title="向左"><i class="fa fa-chevron-circle-left"></i></span>
+            <span class="direction" data-ptz="9" title="自动"><i class="fa fa-refresh"></i></span>
+            <span class="direction" data-ptz="4" title="向右"><i class="fa fa-chevron-circle-right"></i></span>
+            <span class="direction" data-ptz="6" title="左下"><i class="left-down fa fa-chevron-circle-down"></i></span>
+            <span class="direction" data-ptz="2" title="向下"><i class="fa fa-chevron-circle-down"></i></span>
+            <span class="direction" data-ptz="8" title="右下"><i class="right-down fa fa-chevron-circle-right"></i></span>
+        </div>
+
+        <div class="ptz-r">
+            <div class="operation">
+                <label>云台速度</label>
+                <select id="ptzspeed" class="sel">
+                    <option>1</option>
+                    <option>2</option>
+                    <option selected>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="operation">
+                <label>调焦</label>
+                <i title="调焦 -" class="zoomout fa fa-minus-square"></i>
+                <i title="调焦 +" class="zoomin fa fa-plus-square"></i>
+            </div>
+            <div class="operation">
+                <label>聚焦</label>
+                <i title="聚焦 -" class="focusout  fa fa-minus-square"></i>
+                <i title="聚焦 +" class="focusin fa fa-plus-square"></i>
+            </div>
+            <div class="operation">
+                <label>光圈</label>
+                <i title="光圈 -" class="irisout fa fa-minus-square"></i>
+                <i title="光圈 +" class="irisin fa fa-plus-square"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/basejs/webVideoCtrl.js"></script>
+<script src="../static/js/camera.js" type="text/javascript"></script>

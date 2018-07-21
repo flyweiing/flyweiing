@@ -1,0 +1,87 @@
+/**
+ * 主页页面样式
+ */
+
+.main {
+	overflow-y: auto;
+}
+
+.statistics-item {
+	display: inline-block;
+	float: left;
+	width: 50%;
+	height: 49%;
+	border: none;
+}
+
+.statistics-item .title {
+    display: inline-block;
+    float: left;
+    margin: 5% 0 0 7%;
+    width: 92%;
+    height: 30px;
+    line-height: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    background: url("../img/bg_transparent.png");
+}
+
+.lamp-count, .dev-count {
+	height: 160px;
+}
+
+.count-content {
+	display: inline-block;
+    float: left;
+    width: 88%;
+    height: 81px;
+    margin-left: 7%;
+}
+
+.count-item {
+	display: inline-block;
+	float: left;
+	width: 33%;
+	height: 81px;
+	line-height: 34px;
+	border: none;
+	text-align: center;
+	color: #347391;
+	font-size: 18px;
+	background: url("../img/bg_transparent.png") repeat;
+}
+
+.count-item span i {
+	font-size: 32px;
+}
+
+.online-content, .fault-content, .gateway-online, .repair-content {
+	display: inline-block;
+	width: 92%;
+	height: 75%;
+	margin-left: 7%;
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+	overflow: hidden;
+	background: url("../img/bg_transparent.png") repeat;
+	color: #fff;
+}
+
+#online-chart, #fault-chart, #gateway-chart, #repair-chart {
+	height: 100%;
+}
+
+.fault-statistics .title,
+.fault-statistics .fault-content,
+.repair-statistics .title,
+.repair-statistics .repair-content {
+	margin-left: 20px;
+}
+
+.dev-statistics .title,
+.repair-statistics .title {
+	margin-top: 20px;
+ }
