@@ -1,32 +1,30 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div>
+    <dash-aside></dash-aside>
+    <menu-tab></menu-tab>
+    <amap></amap>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+  import Amap from '@/views/amap/index'
+  import DashAside from './dash-aside'
+  import MenuTab from './menu-tab'
 
-export default {
-  name: 'dashboard',
-  computed: {
-    ...mapGetters([
-      'name',
-      'roles'
-    ])
+  export default {
+    name: 'dashboard',
+    components: {
+      Amap,
+      DashAside,
+      MenuTab
+    }
   }
-}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
+  .dashboard-container {
+    width: 100%;
+    height: 100%;
+    background-color: #101a23;
   }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
 </style>

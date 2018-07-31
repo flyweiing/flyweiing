@@ -9,7 +9,7 @@
           placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
+        <el-button type="primary" :loading="loading" @click.native.prevent="handleLogin">
           登   录
         </el-button>
       </el-form-item>
@@ -40,7 +40,7 @@ export default {
     const fullYear = (new Date()).getFullYear()
     return {
       loginForm: {
-        username: '',
+        username: '13138150282',
         password: ''
       },
       loginRules: {
@@ -110,6 +110,10 @@ $light_gray:#eee;
     border-radius: 5px;
     color: #454545;
   }
+  .el-button {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 </style>
@@ -141,33 +145,6 @@ $light_gray:#eee;
         margin-right: 16px;
       }
     }
-  }
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-    &_login {
-      font-size: 20px;
-    }
-  }
-  .title {
-    font-size: 26px;
-    font-weight: 400;
-    color: $light_gray;
-    margin: 0px auto 40px auto;
-    text-align: center;
-    font-weight: bold;
-  }
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
   }
   .footer {
     position: absolute;

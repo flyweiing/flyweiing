@@ -15,13 +15,13 @@ const user = {
     },
     SET_NAME: (state, name) => {
       state.name = name
-    },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
-    },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
     }
+    // SET_AVATAR: (state, avatar) => {
+    //   state.avatar = avatar
+    // },
+    // SET_ROLES: (state, roles) => {
+    //   state.roles = roles
+    // }
   },
 
   actions: {
@@ -30,11 +30,12 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          const data = response.data
+          const data = response
           setToken(data.token)
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {
+          console.log(error)
           reject(error)
         })
       })
@@ -44,14 +45,14 @@ const user = {
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo(state.token).then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
+          const data = response.user
+          // if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+          //   commit('SET_ROLES', data.roles)
+          // } else {
+          //   reject('getInfo: roles must be a non-null array !')
+          // }
+          commit('SET_NAME', data.realName)
+          // commit('SET_AVATAR', data.avatar)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -64,7 +65,8 @@ const user = {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
+          console.log()
+          // commit('SET_ROLES', [])
           removeToken()
           resolve()
         }).catch(error => {
