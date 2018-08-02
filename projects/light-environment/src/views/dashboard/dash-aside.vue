@@ -45,14 +45,30 @@
 </template>
 
 <script>
+  import { getAllNode } from '@/api/light'
+
   export default {
     name: 'AppAside',
+    data() {
+      return {
+        list: null
+      }
+    },
+    created() {
+      this.getAllNode()
+    },
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath)
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath)
+      },
+      getAllNode() {
+        getAllNode().then(response => {
+          this.list = response.list
+          console.log(this.list)
+        })
       }
     }
   }
@@ -65,8 +81,10 @@
 
   /* reset element-ui css */
   .el-menu-dashboard {
+    height: 89%;
     border-right: none;
     background-color: $bg;
+    overflow-y: auto;
     .el-submenu {
       margin-bottom: 3px;
       background: $bg-submenu;
@@ -95,15 +113,15 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
   .aside {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    top: 10px;
+    bottom: 10px;
+    right: 0;
     width: 19%;
-    padding-top: 10px;
-    border-top: 2px solid #15486e;
-    border-left: 2px solid #15486e;
-    background-color: #022e4b;
-    overflow-y: auto;
+    padding: 17px 10px 17px 15px;
+    background-image: url("../../assets/bg_silder.png");
+    background-size: 100% 100%;
+    overflow-y: hidden;
+    z-index: 999;
     .search-input {
       display: flex;
       justify-content: center;
