@@ -1,6 +1,15 @@
 <template>
   <div class="amap-wrapper">
-    <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
+    <el-amap class="amap-box"
+             :vid="'amap-vue'"
+             :center="center"
+             :zoom="zoom">
+      <el-amap-marker vid="component-marker"
+                      v-for="marker in markers"
+                      :position="marker.position"
+                      :content="marker.content">
+      </el-amap-marker>
+    </el-amap>
   </div>
 </template>
 
@@ -16,7 +25,33 @@
   })
 
   export default {
-    name: 'amap'
+    name: 'amap',
+    data() {
+      return {
+        zoom: 16,
+        center: [113.802454, 22.682169],
+        markers: [
+          {
+            position: [113.798454, 22.682169],
+            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
+          },
+          {
+            position: [113.802454, 22.682169],
+            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
+          },
+          {
+            position: [113.804454, 22.682169],
+            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
+          },
+          {
+            position: [113.800454, 22.682169],
+            content: '<img class="img-marker" src="src/assets/home/mark-light-2.png" alt="">'
+          }],
+        markerRefs: [],
+        events: {
+        }
+      }
+    }
   }
 </script>
 

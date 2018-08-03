@@ -1,52 +1,40 @@
 <template>
   <div class="menu-tab">
     <ul class="function-tab">
-      <li class="function-items is-active">
-        <img src="../../assets/icon_light.png" alt=""><span>智慧路灯</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_camera.png" alt=""><span>摄像机</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_led.png" alt=""><span>LED显示屏</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_wifi.png" alt=""><span>WIFI</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_charger.png" alt=""><span>充电桩</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_airing.png" alt=""><span>语音广播</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_help.png" alt=""><span>一键求助</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_rgb.png" alt=""><span>RGB氛围灯</span>
-      </li>
-      <li class="function-items">
-        <img src="../../assets/icon_usb.png" alt=""><span>手机充电</span>
+      <li class="function-items"
+          v-for="(item, index) in imgItems"
+          :key="index"
+          @click="selectItem(index)"
+          :class="{active:index==ins}">
+        <img :src="item.imgSrc" alt=""><span>{{ item.title }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import { Light, Camera, Led, Wifi, Charger, Airing, Help, Rgb, Usb } from './components'
-
   export default {
     name: 'MenuTab',
-    components: {
-      Light,
-      Camera,
-      Led,
-      Wifi,
-      Charger,
-      Airing,
-      Help,
-      Rgb,
-      Usb
+    data() {
+      return {
+        ins: '0',
+        imgItems: [
+          { title: '智慧路灯', imgSrc: 'src/assets/icon_light.png' },
+          { title: '摄像机', imgSrc: 'src/assets/icon_camera.png' },
+          { title: 'LED显示屏', imgSrc: 'src/assets/icon_led.png' },
+          { title: 'WIFI', imgSrc: 'src/assets/icon_wifi.png' },
+          { title: '充电桩', imgSrc: 'src/assets/icon_charger.png' },
+          { title: '语音广播', imgSrc: 'src/assets/icon_airing.png' },
+          { title: '一键求助', imgSrc: 'src/assets/icon_help.png' },
+          { title: 'RGB氛围灯', imgSrc: 'src/assets/icon_rgb.png' },
+          { title: '手机充电', imgSrc: 'src/assets/icon_usb.png' }
+        ]
+      }
+    },
+    methods: {
+      selectItem(index) {
+        this.ins = index
+      }
     }
   }
 </script>
@@ -72,9 +60,9 @@
       justify-content: center;
       height: 66px;
       cursor: pointer;
-    }
-    .is-active, .function-items:hover {
-      background: linear-gradient(#25a5ef, #3376d0);
+      &.active, &:hover {
+        background: linear-gradient(#25a5ef, #3376d0);
+      }
     }
   }
 </style>
