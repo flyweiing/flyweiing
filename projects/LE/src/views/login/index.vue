@@ -103,16 +103,20 @@ $light_gray:#eee;
     position: relative;
     top: 42%;
     left: 21%;
-    width: 50%;
-    height: 12%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    width: 45%;
+    height: 36px;
+    margin-bottom: 20px;
     color: #454545;
   }
   .el-button {
-    width: 100%;
-    height: 100%;
+    margin-left:1.5%;
+    margin-top: 4px;
+    width: 84%;
+    height: 120%;
+  }
+  .el-form-item__error{
+    top: 33px;
+    left: 15px;
   }
 }
 
@@ -129,12 +133,26 @@ $light_gray:#eee;
   background-size: 100% 100%;
   .login-form {
     position: absolute;
-    top: 20%;
-    right: 15%;
-    width: 30%;
-    height: 49%;
+    top: 28%;
+    right: 14%;
+    width: 610px;
+    height: 390px;
     background-image: url('../../assets/login/login_form.png');
     background-size: 100% 100%;
+    @media screen and (max-width: 1600px) {
+      top: 17%;
+      right: 12%;
+    }
+    &:after{
+      content:'';
+      position: absolute;
+      top: 100%;
+      left: 6.6%;
+      width: 76.8%;
+      height: 150px;
+      background-image: url('../../assets/login/login_form_reflect.png');
+      background-size: 100% auto;
+    }
   }
   .tips {
     font-size: 14px;
@@ -154,6 +172,7 @@ $light_gray:#eee;
     font-size: 12px;
     color: #fff;
     text-align: center;
+    letter-spacing: 1.5px;
   }
 }
 </style>

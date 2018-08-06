@@ -4,40 +4,30 @@
       <input type="text" placeholder="请输入内容">
       <button></button>
     </div>
+    <ul class="header-title">
+      <li class="name">灯杆名称</li>
+      <li class="num">编号</li>
+      <li class="status">状态</li>
+    </ul>
     <el-menu
       default-active="2"
       class="el-menu-dashboard"
       @open="handleOpen"
       @close="handleClose"
+      :uniqueOpened="true"
       text-color="#fff">
-      <el-submenu index="1">
+      <el-submenu
+        v-for="(item, index) in list"
+        :key="index"
+        :index="'' + (index + 1)">
         <template slot="title">
-          <span>福永总部路灯杆组</span>
+          <span>{{ item.address }}</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1">擎天灯柱</el-menu-item>
-          <el-menu-item index="1-2">竖琴灯柱</el-menu-item>
-          <el-menu-item index="1-3">斜塔灯柱</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-submenu index="2">
-        <template slot="title">
-          <span>分组一</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">
-          <span>分组二</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="3-1">选项1</el-menu-item>
-          <el-menu-item index="3-2">选项2</el-menu-item>
-          <el-menu-item index="3-3">选项3</el-menu-item>
+          <el-menu-item
+            v-for="(nodeItem, nodeIndex) in item.nodeList"
+            :key="nodeIndex"
+            :index="(index + 1) + '-' + (nodeIndex + 1)">{{ nodeItem.address }}</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
@@ -76,36 +66,70 @@
 
 <style rel="stylesheet/scss" lang="scss">
   $bg: #022e4b;
-  $bg-submenu: linear-gradient(right, #1b72b5, #2e9feb);
-  $bg-active: linear-gradient(right, #9b3898, #3d83c7);
+  $menu-left: #2e9feb;
+  $menu-right: #1b72b5;
+  $active-left: #3d83c7;
+  $active-right: #9b3898;
 
   /* reset element-ui css */
   .el-menu-dashboard {
-    height: 89%;
+    height: 84%;
     border-right: none;
     background-color: $bg;
     overflow-y: auto;
     .el-submenu {
       margin-bottom: 3px;
-      background: $bg-submenu;
-      .el-menu-item {
-        border-left: 5px solid $bg;
+      background: -webkit-linear-gradient(right, $menu-right, $menu-left);
+      background: -moz-linear-gradient(right, $menu-right, $menu-left);
+      background: -o-linear-gradient(right, $menu-right, $menu-left);
+      background: linear-gradient(right, $menu-right, $menu-left);
+      .el-menu {
         background-color: $bg;
+      }
+      .el-menu-item {
+        height: 36px;
+        line-height: 36px;
+        margin-bottom: 3px;
+        background-color: #025485;
+        &:before{
+          content: '';
+          position: absolute;
+          z-index: 3;
+          left: 0;
+          width:0;
+          height:0;
+          border-right: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          border-left: 6px solid $bg;
+          border-top: 6px solid $bg;
+        }
       }
       .el-menu-item-group {
         background-color: $bg;
       }
-      .el-submenu__title:hover {
-        background: $bg-submenu;
+      .el-submenu__title {
+        height: 36px;
+        line-height: 36px;
+        &:hover {
+          background: -webkit-linear-gradient(right, $menu-right, $menu-left);
+          background: -moz-linear-gradient(right, $menu-right, $menu-left);
+          background: -o-linear-gradient(right, $menu-right, $menu-left);
+          background: linear-gradient(right, $menu-right, $menu-left);
+        }
       }
       .el-submenu__title i {
         color: #044972;
       }
     }
     .el-menu-item.is-active {
-      border-left: 5px solid #00b7ee;
       color: #fff;
-      background: $bg-active;
+      background: -webkit-linear-gradient(right, $active-right, $active-left);
+      background: -moz-linear-gradient(right, $active-right, $active-left);
+      background: -o-linear-gradient(right, $active-right, $active-left);
+      background: linear-gradient(right, $active-right, $active-left);
+      &:before{
+        border: none;
+      }
     }
   }
 </style>
@@ -116,8 +140,8 @@
     top: 10px;
     bottom: 10px;
     right: 0;
-    width: 19%;
-    padding: 17px 10px 17px 15px;
+    width: 20%;
+    padding: 1.6% 0.6% 1.6% 1.1%;
     background-image: url("../../assets/bg_silder.png");
     background-size: 100% 100%;
     overflow-y: hidden;
@@ -141,6 +165,54 @@
         background-image: url("../../assets/search.png");
         background-size: 100% 100%;
         cursor: pointer;
+      }
+    }
+    .header-title {
+      display: flex;
+      list-style: none;
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 0 3px 0;
+      padding: 0;
+      color: #fff;
+      li {
+        margin-right: 3px;
+        text-align: center;
+        background-color: #00699c;
+        &:last-child {
+          margin-right: 0;
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          z-index: 3;
+          left: 0;
+          width:0;
+          height:0;
+          border-right: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          border-left: 6px solid #022e4b;
+          border-top: 6px solid #022e4b;
+        }
+      }
+      .name{
+        width: 50%;
+        &:before {
+          left: 15px;
+        }
+      }
+      .num {
+        width: 30%;
+        &:before {
+          left: calc(53% - 6px);
+        }
+      }
+      .status {
+        width: 20%;
+        &:before {
+          left: calc(81% - 6px);
+        }
       }
     }
   }
