@@ -1,8 +1,4 @@
-# light-environment
-
-> 洲明科技光环境管理平台。
-
-## Build Setup
+﻿## Build Setup
 
 ``` bash
 
