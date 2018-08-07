@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard-container">
-    <dash-aside></dash-aside>
+    <dash-aside :itemList="allList"></dash-aside>
     <menu-tab></menu-tab>
-    <amap></amap>
+    <amap :markers="mapItem"></amap>
   </div>
 </template>
 
@@ -10,9 +10,42 @@
   import Amap from '@/views/amap/index'
   import DashAside from './dash-aside'
   import MenuTab from './menu-tab'
+  import { getAllNode } from '@/api/light'
 
   export default {
     name: 'dashboard',
+    data() {
+      return {
+        allList: null,
+        mapItem: []
+      }
+    },
+    created() {
+      this.getAllNode()
+    },
+    methods: {
+      getAllNode() {
+        const _this = this
+        getAllNode().then(response => {
+          const list = response.list
+          _this.allList = list
+          list.forEach((item, index) => {
+            const nodeList = item.nodeList
+            if (nodeList.length > 0) {
+              nodeList.forEach((mItem, mIndex) => {
+                const status = mItem.isOnline === 1 ? 'on' : 'off'
+                _this.mapItem.push({
+                  nodeName: mItem.address,
+                  nodeCode: mItem.code,
+                  position: [mItem.longitude, mItem.latitude],
+                  content: '<img class="img-marker" src="src/assets/icons/light_' + status + '.png" alt="">'
+                })
+              })
+            }
+          })
+        })
+      }
+    },
     components: {
       Amap,
       DashAside,

@@ -26,27 +26,15 @@
 
   export default {
     name: 'amap',
+    props: {
+      markers: {
+        type: Array
+      }
+    },
     data() {
       return {
         zoom: 16,
         center: [113.802454, 22.682169],
-        markers: [
-          {
-            position: [113.798454, 22.682169],
-            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
-          },
-          {
-            position: [113.802454, 22.682169],
-            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
-          },
-          {
-            position: [113.804454, 22.682169],
-            content: '<img class="img-marker" src="src/assets/home/mark-light-1.png" alt="">'
-          },
-          {
-            position: [113.800454, 22.682169],
-            content: '<img class="img-marker" src="src/assets/home/mark-light-2.png" alt="">'
-          }],
         markerRefs: [],
         events: {
         }

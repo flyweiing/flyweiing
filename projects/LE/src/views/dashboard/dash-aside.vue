@@ -15,19 +15,28 @@
       @open="handleOpen"
       @close="handleClose"
       :uniqueOpened="true"
+      :default-openeds="openeds"
       text-color="#fff">
       <el-submenu
-        v-for="(item, index) in list"
+        v-for="(item, index) in itemList"
         :key="index"
         :index="'' + (index + 1)">
         <template slot="title">
           <span>{{ item.address }}</span>
         </template>
-        <el-menu-item-group>
+        <el-menu-item-group v-if="item.nodeList.length > 0 ">
           <el-menu-item
             v-for="(nodeItem, nodeIndex) in item.nodeList"
             :key="nodeIndex"
-            :index="(index + 1) + '-' + (nodeIndex + 1)">{{ nodeItem.address }}</el-menu-item>
+            :index="(index + 1) + '-' + (nodeIndex + 1)">
+            <span class="name">{{ nodeItem.address }}</span>
+            <span class="num">编号:{{ nodeItem.code }}</span>
+            <span v-if="nodeItem.isOnline == 1" class="on">在线</span>
+            <span v-else="nodeItem.isOnline == 0" class="off">离线</span>
+          </el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group v-else="item.nodeList.length === 0 ">
+          <el-menu-item :index="(index + 1) + '-1'" disabled><span class="node-none">该网关下暂无节点</span></el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
@@ -35,17 +44,17 @@
 </template>
 
 <script>
-  import { getAllNode } from '@/api/light'
-
   export default {
     name: 'AppAside',
-    data() {
-      return {
-        list: null
+    props: {
+      itemList: {
+        type: Array
       }
     },
-    created() {
-      this.getAllNode()
+    data() {
+      return {
+        openeds: ['1']
+      }
     },
     methods: {
       handleOpen(key, keyPath) {
@@ -53,12 +62,6 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath)
-      },
-      getAllNode() {
-        getAllNode().then(response => {
-          this.list = response.list
-          console.log(this.list)
-        })
       }
     }
   }
@@ -79,10 +82,10 @@
     overflow-y: auto;
     .el-submenu {
       margin-bottom: 3px;
-      background: -webkit-linear-gradient(right, $menu-right, $menu-left);
-      background: -moz-linear-gradient(right, $menu-right, $menu-left);
-      background: -o-linear-gradient(right, $menu-right, $menu-left);
-      background: linear-gradient(right, $menu-right, $menu-left);
+      background: -webkit-linear-gradient(90deg, $menu-left, $menu-right);
+      background: -moz-linear-gradient(90deg, $menu-left, $menu-right);
+      background: -o-linear-gradient(90deg, $menu-left, $menu-right);
+      background: linear-gradient(90deg, $menu-left, $menu-right);
       .el-menu {
         background-color: $bg;
       }
@@ -90,6 +93,7 @@
         height: 36px;
         line-height: 36px;
         margin-bottom: 3px;
+        padding: 0 !important;
         background-color: #025485;
         &:before{
           content: '';
@@ -103,6 +107,35 @@
           border-left: 6px solid $bg;
           border-top: 6px solid $bg;
         }
+        &.is-active {
+          color: #fff;
+          background: -webkit-linear-gradient(90deg, $active-left, $active-right);
+          background: -moz-linear-gradient(90deg, $active-left, $active-right);
+          background: -o-linear-gradient(90deg, $active-left, $active-right);
+          background: linear-gradient(90deg, $active-left, $active-right);
+          &:before{
+            border: none;
+          }
+        }
+        span {
+          display: inline-block;
+          text-align: center;
+        }
+        .name {
+          width: 50%;
+        }
+        .num {
+          width: 30%;
+        }
+        .node-none {
+          width: 100%;
+        }
+        .on {
+          color: #67c23a;
+        }
+        .off {
+          color: #f56c6c;
+        }
       }
       .el-menu-item-group {
         background-color: $bg;
@@ -111,24 +144,22 @@
         height: 36px;
         line-height: 36px;
         &:hover {
-          background: -webkit-linear-gradient(right, $menu-right, $menu-left);
-          background: -moz-linear-gradient(right, $menu-right, $menu-left);
-          background: -o-linear-gradient(right, $menu-right, $menu-left);
-          background: linear-gradient(right, $menu-right, $menu-left);
+          background: -webkit-linear-gradient(90deg, $menu-left, $menu-right);
+          background: -moz-linear-gradient(90deg, $menu-left, $menu-right);
+          background: -o-linear-gradient(90deg, $menu-left, $menu-right);
+          background: linear-gradient(90deg, $menu-left, $menu-right);
         }
-      }
-      .el-submenu__title i {
-        color: #044972;
-      }
-    }
-    .el-menu-item.is-active {
-      color: #fff;
-      background: -webkit-linear-gradient(right, $active-right, $active-left);
-      background: -moz-linear-gradient(right, $active-right, $active-left);
-      background: -o-linear-gradient(right, $active-right, $active-left);
-      background: linear-gradient(right, $active-right, $active-left);
-      &:before{
-        border: none;
+        i {
+          display: inline-block;
+          border-right: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          border-left: 6px solid transparent;
+          border-top: 6px solid $bg;
+          color: #044972;
+        }
+        .el-icon-arrow-down:before {
+          content: '';
+        }
       }
     }
   }
@@ -145,7 +176,7 @@
     background-image: url("../../assets/bg_silder.png");
     background-size: 100% 100%;
     overflow-y: hidden;
-    z-index: 999;
+    z-index: 99;
     .search-input {
       display: flex;
       justify-content: center;
@@ -183,36 +214,15 @@
         &:last-child {
           margin-right: 0;
         }
-        &:before {
-          content: '';
-          position: absolute;
-          z-index: 3;
-          left: 0;
-          width:0;
-          height:0;
-          border-right: 6px solid transparent;
-          border-bottom: 6px solid transparent;
-          border-left: 6px solid #022e4b;
-          border-top: 6px solid #022e4b;
-        }
       }
       .name{
         width: 50%;
-        &:before {
-          left: 15px;
-        }
       }
       .num {
         width: 30%;
-        &:before {
-          left: calc(53% - 6px);
-        }
       }
       .status {
         width: 20%;
-        &:before {
-          left: calc(81% - 6px);
-        }
       }
     }
   }
