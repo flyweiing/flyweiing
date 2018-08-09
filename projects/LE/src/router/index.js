@@ -25,7 +25,45 @@ export const constantRouterMap = [
       },
       {
         path: 'dashboard',
-        component: () => import('@/views/dashboard/index')
+        component: () => import('@/views/dashboard/index'),
+        children: [
+          {
+            path: 'light',
+            component: () => import('@/views/dashboard/components/light')
+          },
+          {
+            path: 'camera',
+            component: () => import('@/views/dashboard/components/camera')
+          },
+          {
+            path: 'led',
+            component: () => import('@/views/dashboard/components/led')
+          },
+          {
+            path: 'wifi',
+            component: () => import('@/views/dashboard/components/wifi')
+          },
+          {
+            path: 'charger',
+            component: () => import('@/views/dashboard/components/charger')
+          },
+          {
+            path: 'airing',
+            component: () => import('@/views/dashboard/components/airing')
+          },
+          {
+            path: 'help',
+            component: () => import('@/views/dashboard/components/help')
+          },
+          {
+            path: 'rgb',
+            component: () => import('@/views/dashboard/components/rgb')
+          },
+          {
+            path: 'usb',
+            component: () => import('@/views/dashboard/components/usb')
+          }
+        ]
       },
       {
         path: 'chart',

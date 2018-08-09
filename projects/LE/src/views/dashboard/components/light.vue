@@ -1,6 +1,5 @@
 <template>
   <div class="light">
-    <img class="bg_image" src="../../../assets/light_model.png" alt="">
     <div class="light-info"></div>
     <!--<button>开关</button>-->
     <div class="slider">
@@ -48,38 +47,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .light {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    color: #fff;
-    .bg_image{
-      width: 50%;
-      height: 50%;
-      margin-top: 5%;
-    }
-    .light-info {
-      width: 30%;
-      height: 45%;
-      margin: 5% 0 0 9%;
-      background-image: url("../../../assets/light_info.png");
-      background-size: 100% 100%;
-    }
-    .slider {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 115px;
-      height: 200px;
-      background-image: url("../../../assets/light_dimming.png");
-      background-size: 100% 100%;
-      .dimming-value {
-        padding-bottom: 10px;
-      }
-      .dimming-label {
-        padding-top: 10px;
-      }
-    }
 
   }
 </style>

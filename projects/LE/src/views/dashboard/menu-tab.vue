@@ -4,7 +4,7 @@
       <li class="function-items"
           v-for="(item, index) in imgItems"
           :key="index"
-          @click="selectItem(index)"
+          @click="selectItem(index, item.type)"
           :class="{active:index==ins}">
         <img :src="item.imgSrc" alt=""><span>{{ item.title }}</span>
       </li>
@@ -19,21 +19,22 @@
       return {
         ins: '0',
         imgItems: [
-          { title: '智慧路灯', imgSrc: 'src/assets/icons/icon_light.png' },
-          { title: '摄像机', imgSrc: 'src/assets/icons/icon_camera.png' },
-          { title: 'LED显示屏', imgSrc: 'src/assets/icons/icon_led.png' },
-          { title: 'WIFI', imgSrc: 'src/assets/icons/icon_wifi.png' },
-          { title: '充电桩', imgSrc: 'src/assets/icons/icon_charger.png' },
-          { title: '语音广播', imgSrc: 'src/assets/icons/icon_airing.png' },
-          { title: '一键求助', imgSrc: 'src/assets/icons/icon_help.png' },
-          { title: 'RGB氛围灯', imgSrc: 'src/assets/icons/icon_rgb.png' },
-          { title: '手机充电', imgSrc: 'src/assets/icons/icon_usb.png' }
+          { title: '智慧路灯', imgSrc: require('@/assets/icons/icon_light.png'), type: 'light' },
+          { title: '摄像机', imgSrc: require('@/assets/icons/icon_camera.png'), type: 'camera' },
+          { title: 'LED显示屏', imgSrc: require('@/assets/icons/icon_led.png'), type: 'led' },
+          { title: 'WIFI', imgSrc: require('@/assets/icons/icon_wifi.png'), type: 'wifi' },
+          { title: '充电桩', imgSrc: require('@/assets/icons/icon_charger.png'), type: 'charger' },
+          { title: '语音广播', imgSrc: require('@/assets/icons/icon_airing.png'), type: 'airing' },
+          { title: '一键求助', imgSrc: require('@/assets/icons/icon_help.png'), type: 'help' },
+          { title: 'RGB氛围灯', imgSrc: require('@/assets/icons/icon_rgb.png'), type: 'rgb' },
+          { title: '手机充电', imgSrc: require('@/assets/icons/icon_usb.png'), type: 'usb' }
         ]
       }
     },
     methods: {
-      selectItem(index) {
+      selectItem(index, type) {
         this.ins = index
+        this.$emit('select', type)
       }
     }
   }

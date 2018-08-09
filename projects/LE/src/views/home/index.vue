@@ -17,7 +17,7 @@
             <ul class="lf-cont">
               <li class="pannel">
                 <div class="pannel-hd">
-                  <div :class="['light-off',isLightOff?'disabled':'']" @click="lightOff"></div>
+                  <div :class="['light-off',lightObj.isOnline===0?'disabled':'']" @click="lightOff"></div>
                   <!-- <img src="@/assets/home/light-1.png" alt="light-1.png"> -->
                 </div>
                 <p class="pannel-bd">照明开关</p>
@@ -32,7 +32,7 @@
                         class="dimming-slider"
                         v-model="value"
                         :show-tooltip="false"
-                        @change = "sliderChange"
+                        @change = "rangeBlur"
                         vertical>
                       </el-slider>
                     </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="lf-charge-md">
               <div class="car">
-                <img src="@/assets/home/car-1.png" alt="car-1.png">
+                 <img src="@/assets/home/car-1.png" alt="car-1.png"> 
                 <span class="percentage">{{chargePercentage}} %</span>
               </div>
               <p>充电时长：{{chargeTimeTotalFormat}}</p>
@@ -67,15 +67,15 @@
           </div>
           <div class="lf-map">
             <div class="map">
-              <amap-home></amap-home>
+              <amap-home :markers="mapItems" :fromPage="'home'"></amap-home>
             </div>
           </div>
         </div>
         <!-- home-md -->
         <div class="home-md">
           <div class="md-status">
-            <h2 class="title">智慧灯杆 · 樊花</h2>
-            <p class="subTitle">编号：ZF12345</p>
+            <h2 class="title">{{lightObj.name}}</h2>
+            <p class="subTitle">编号：{{lightObj.code}}</p>
             <table>
               <tr>
                 <td>灯杆状态：</td>
@@ -85,9 +85,9 @@
               </tr>
               <tr>
                 <td>照明状态：</td>
-                <td>开启</td>
+                <td>{{lightObj.isOnline===0?'关闭':'开启'}}</td>
                 <td>亮度大小：</td>
-                <td>50%</td>
+                <td>{{value}}%</td>
               </tr>
               <tr>
                 <td>监控视频：</td>
@@ -158,39 +158,64 @@
         </div>
     </div>
 
+    <!--照明开关提示  -->
     <el-dialog
       title="提示"
-      :visible.sync="centerDialogVisible"
+      :visible.sync="onoffDialogVisible"
       width="300px"
       center>
       <span>你确定要切换照明开关吗？</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false">取 消</el-button>
+        <el-button @click="onoffDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="changeLightOff">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!--智能调光提示  -->
+    <el-dialog
+      title="提示"
+      :visible.sync="rangeDialogVisible"
+      width="360px"
+      center
+      @close="changeRange">
+      <span>是否将灯光亮度调为<span class="color-danger">{{value}}%</span>【 <span class="color-danger">如果执行的组、网关或节点已绑定策略；为避免误操作，操作将会在10分钟内恢复策略；如果需要长时间执行，请先禁用策略，再操作。</span>】</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="rangeDialogVisible=false">取 消</el-button>
+        <el-button type="primary" @click="closeRangeDialog">确 定</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import AmapHome from '@/views/amap/home'
+  import AmapHome from '@/views/amap/index'
   import MyCamera from '@/components/camera/camera'
+  import { getSingleControl, getAllNode } from '@/api/light'
+
   export default {
     name: 'Home',
     components: {
-      AmapHome,
-      MyCamera
+      AmapHome, //地图；
+      MyCamera  //实时监控；（需要在内网环境下）
     },
     data(){
       return {
-        centerDialogVisible: false,
-        value: 50,
-        isLightOff: false,
-        chargePercentage: 79,
-        chargeTimeTotal: 240 //秒
+        lightObj: {
+          name: '智慧灯杆 · 樊花',
+          code: '8003',
+          isOnline: 1 //照明开关；
+        },
+        onoffDialogVisible: false, //控制照明开关提示框；
+        rangeDialogVisible: false, //控制智能调光提示框；
+        value: 50,  //调光百分比值；
+        valuePrev: 0,  //原调光百分比值；
+        rangeAllowed: false,
+        chargePercentage: 79, //充电百分比；
+        chargeTimeTotal: 240, //充电时长；
+        mapItems: []  //地图节点列表；
       }
     },
     computed: {
+      //充电时长格式化；
       chargeTimeTotalFormat: function(){
         let total = this.chargeTimeTotal;
         let h = Math.floor(total/3600);
@@ -199,19 +224,94 @@
         return addZero(h)+' : '+addZero(m)+' : '+addZero(s);
       }
     },
+    created(){
+      this.$set(this,'valuePrev',this.value)      
+      this._getAllNode(); //地图；
+
+    },
     methods:{
+      //点击照明开关-callback；
       lightOff(){
-        this.$set(this,'centerDialogVisible',true)
+        this.$set(this,'onoffDialogVisible',true)
       },
+      //照明开关弹框-确定；
       changeLightOff(){
-        this.$set(this,'isLightOff',!this.isLightOff)
-        this.$set(this,'centerDialogVisible',false)
+        // this.$set(this,'lightObj.isOnline',!this.lightObj.isOnline)
+        this._lightOnoff(); //照明开关；
+        this.$set(this,'onoffDialogVisible',false)
       },
-      sliderChange(){
-        alert(this.value)
+      //智能调光-显示弹框
+      rangeBlur(){        
+        this.$set(this,'rangeDialogVisible',true)
+      },
+      //智能调光提示框-确定
+      closeRangeDialog(){
+        let _this = this;        
+        // 请求调光；
+        getSingleControl(_this.lightObj.code,1,_this.value).then((res) => {          
+          // console.log('res:',res)
+          if(res.code===0){
+            _this.$set(_this,'rangeAllowed',true)
+            _this.$set(_this,'valuePrev',this.value)
+            _this.$set(_this,'rangeDialogVisible',false)
+          } 
+        }).catch(error => {
+          // console.log('error:',error)
+          _this.$set(this,'rangeDialogVisible',false)
+        })
+        
+      },
+      //智能调光-change
+      changeRange(){
+        if(this.rangeAllowed){
+          this.$set(this,'value',this.value)
+        }else{
+          this.$set(this,'value',this.valuePrev)
+        }        
+        this.$set(this,'rangeDialogVisible',false)
+        this.$set(this,'rangeAllowed',false)
+      },
+      //照明开关-api；
+      _lightOnoff(){
+        let _this = this;        
+        getSingleControl(_this.lightObj.code,0,_this.lightObj.isOnline).then((res) => {          
+          console.log('res:',res)
+          if(res.code===0){
+            let n = _this.lightObj.isOnline===1 ? 0 : 1;
+            _this.$set(_this.lightObj,'isOnline',n)
+          } 
+        }).catch(error => {
+          // console.log('error:',error)
+        })
+      },
+      //地图-api
+      _getAllNode() {
+        const _this = this
+        getAllNode().then(response => {
+          const list = response.list;
+
+          let mapItems = [];
+          list.forEach((item, index) => {
+            const nodeList = item.nodeList
+            if (nodeList.length > 0) {
+              nodeList.forEach((mItem, mIndex) => {
+                const status = mItem.isOnline === 1 ? '' : 'disabled'
+                mapItems.push({
+                  nodeName: mItem.address,
+                  nodeCode: mItem.code,
+                  position: [mItem.longitude, mItem.latitude],
+                  content: '<div class="mark-item '+status+'"></div>'
+                })
+              })
+            }
+          })
+          _this.$set(_this,'mapItems',mapItems)
+        })
       }
+
     }
   }
+  //个位数补零；
   function addZero(n){
     n = parseInt(n)||0;
     return n>9? ''+n:'0'+n;
@@ -221,6 +321,7 @@
 <style lang="scss" scoped src="@/styles/home.scss"></style>
 
 <style lang="scss">
+  .color-danger{color: red;}
   .dimming-slider{
     .el-slider__button {
         height: 10px;

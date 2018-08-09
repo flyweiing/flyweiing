@@ -28,8 +28,9 @@
           <el-menu-item
             v-for="(nodeItem, nodeIndex) in item.nodeList"
             :key="nodeIndex"
-            :index="(index + 1) + '-' + (nodeIndex + 1)">
-            <span class="name">{{ nodeItem.address }}</span>
+            :index="(index + 1) + '-' + (nodeIndex + 1)"
+            @click="selectItem(nodeItem)">
+            <span class="name">{{ nodeItem.name }}</span>
             <span class="num">编号:{{ nodeItem.code }}</span>
             <span v-if="nodeItem.isOnline == 1" class="on">在线</span>
             <span v-else="nodeItem.isOnline == 0" class="off">离线</span>
@@ -57,6 +58,9 @@
       }
     },
     methods: {
+      selectItem(nodeItem) {
+        this.$emit('select', nodeItem)
+      },
       handleOpen(key, keyPath) {
         console.log(key, keyPath)
       },
