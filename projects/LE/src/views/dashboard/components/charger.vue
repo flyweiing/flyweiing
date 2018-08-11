@@ -1,11 +1,27 @@
 <template>
   <div class="charger">
-    充电桩
+    <img :src="imgSrc" alt="">
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Charger'
+    name: 'charger',
+    data() {
+      return {
+        imgSrc: require('@/assets/func/charger_func.png')
+      }
+    }
   }
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+  .charger {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+</style>

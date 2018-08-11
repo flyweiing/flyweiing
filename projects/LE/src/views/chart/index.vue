@@ -8,6 +8,8 @@
           <el-col :span="12">
             <div class="chart-item">
               <div id="myChart1" :style="{width: '100%', height: '100%'}"></div>
+              <el-date-picker class="my-datepicker1" @change="myDatepicker1Change" format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd" type="date" v-model="datapickerValue1" placeholder="选择日期"></el-date-picker>              
             </div>
           </el-col>
           <el-col :span="12">
@@ -35,33 +37,30 @@
 
 <script>
   import Echarts from 'echarts'
+  import { addZero, dateFormate } from '@/utils/fn'
+  import { getOnlineOffline } from '@/api/chart'
 
   export default {
     name: 'Chart',
     data(){     
-      return {        
-        chartData1: {   
-          title:'灯节点在线统计',       
-          columns: ['日期', '在线', '离线'],
-          rows: [
-            { '日期': '1/1', '在线': 1393, '离线': 1093 },
-            { '日期': '1/2', '在线': 3530, '离线': 3230 },
-            { '日期': '1/3', '在线': 2923, '离线': 2623 },
-            { '日期': '1/4', '在线': 1723, '离线': 1423 },
-            { '日期': '1/5', '在线': 3792, '离线': 3492 },
-            { '日期': '1/6', '在线': 4593, '离线': 4293 }
-          ]
+      return {  
+        datapickerValue1: dateFormate(new Date()),
+        chart1:{
+          data1: [7,7,10,7,9, 7,9,8,7,9, 8,7,6,7,8, 7,7,10,7,9, 7,9,8,7],
+          data2: [3,5,3,5,3, 4,3,5,3,4, 2,4,3,5,4, 3,5,3,5,3, 4,3,5,3]
         }
       }
     },
     mounted(){
-      this.initMyChart1();
+      // this.initMyChart1();
+      this.myDatepicker1Change(this.datapickerValue1)
       this.initMyChart2();
       this.initMyChart3();
       this.initMyChart4();
     },
     methods: {
       initMyChart1(){
+        let _this = this;
         let myChart1 = Echarts.init(document.getElementById('myChart1'))
         myChart1.setOption({
             title: { 
@@ -142,30 +141,33 @@
                 }
                 
             },
-            yAxis: [{              
-              axisLine: {
-                lineStyle: {
-                  color: '#a7abae'
+            yAxis: [
+              {              
+                axisLine: {
+                  lineStyle: {
+                    color: '#a7abae'
+                  }
+                },
+                axisTick: {
+                  show: false
                 }
               },
-              axisTick: {
-                show: false
-              }
-            },{              
-              axisLine: {
-                lineStyle: {
-                  color: '#a7abae'
+              {              
+                axisLine: {
+                  lineStyle: {
+                    color: '#a7abae'
+                  }
+                },
+                axisTick: {
+                  show: false
                 }
-              },
-              axisTick: {
-                show: false
               }
-            }],
+            ],
             series: [
               {
                 name: '在线',
                 type: 'bar',
-                data: [7,7,10,7,9, 7,9,8,7,9, 8,7,6,7,8, 7,7,10,7,9, 7,9,8,7],
+                data: _this.chart1.data1,
                 itemStyle: {
                   color: '#54d72c'
                 }
@@ -173,7 +175,7 @@
               {
                 name: '离线',
                 type: 'bar',
-                data: [3,5,3,5,3, 4,3,5,3,4, 2,4,3,5,4, 3,5,3,5,3, 4,3,5,3],
+                data: _this.chart1.data2,
                 itemStyle: {
                   color: '#fc5a5a'
                 }
@@ -534,9 +536,64 @@
               }
           ]
         });
-      }
+      },
+      //chart1-改变日历；
+      myDatepicker1Change(d){
+        let _this = this;        
+        getOnlineOffline(d).then((res) => { 
+          
+          if(res.code===0){
+            let chart1 = {
+              data1: [],
+              data2: []
+            };
+            let ls_online = res.list[0];
+            let ls_offline = res.list[1];
+            
+            for(let k  in ls_online){
+              if(k.charAt(0)==='h'){
+                let kk = parseInt(k.trim().slice(1))-1
+                chart1.data1[kk] = parseInt(ls_online[k]||0);
+              }
+            }
+            for(let k  in ls_offline){
+              if(k.charAt(0)==='h'){
+                let kk = parseInt(k.trim().slice(1))-1
+                chart1.data2[kk] = parseInt(ls_online[k]||0);
+              }
+            }
+            _this.$set(_this.chart1,'data1',chart1.data1)
+            _this.$set(_this.chart1,'data2',chart1.data2)
+            _this.initMyChart1();
+            console.log(chart1)
+          } else {
+             _this.$message({
+              showClose: true,
+              message: res.msg,
+              type: 'error'
+            });
+          } 
+        }).catch(error => {
+          // console.log('error:',error)
+        })
+      },
     }
   }
+  
 </script>
 
 <style lang="scss" scoped src="@/styles/chart.scss"></style>
+<style lang="scss">
+.el-input--prefix .el-input__inner {
+    padding-left: 30px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 0;
+    color: #fff;
+    background: rgba(255,255,255,.1);
+    border-color: #555;
+}
+.el-input__icon {
+    line-height: 28px;
+}
+</style>

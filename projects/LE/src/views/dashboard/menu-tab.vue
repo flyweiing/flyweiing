@@ -17,7 +17,7 @@
     name: 'MenuTab',
     data() {
       return {
-        ins: '0',
+        ins: 0,
         imgItems: [
           { title: '智慧路灯', imgSrc: require('@/assets/icons/icon_light.png'), type: 'light' },
           { title: '摄像机', imgSrc: require('@/assets/icons/icon_camera.png'), type: 'camera' },
@@ -33,8 +33,11 @@
     },
     methods: {
       selectItem(index, type) {
-        this.ins = index
-        this.$emit('select', type)
+        const oldIns = this.ins
+        if (oldIns !== index) {
+          this.ins = index
+          this.$emit('select', type)
+        }
       }
     }
   }

@@ -4,6 +4,7 @@
              :vid="'amap-vue'"
              :center="this.$store.getters.center"
              :zoom="zoom">
+      <!--功能坐标点-->
       <el-amap-marker vid="component-marker"
                       v-for="marker in markers"
                       :key="marker.nodeCode"
@@ -11,6 +12,12 @@
                       :content="marker.content"
                       :events="events">
       </el-amap-marker>
+      <!--坐标点标题弹出框-->
+      <el-amap-info-window
+        :position="this.$store.getters.center"
+        :content="this.$store.getters.markerTitle"
+        :visible="windowVisible">
+      </el-amap-info-window>
     </el-amap>
   </div>
 </template>
@@ -43,8 +50,10 @@
       return {
         zoom: 16,
         markerRefs: [],
+        windowVisible: false,
         events: {
           click: () => {
+            this.windowVisible = true
             this.$emit('select', this.markerType)
           }
         }
@@ -61,6 +70,10 @@
     .amap-logo,
     .amap-copyright {
       display: none !important;
+    }
+    .amap-info-contentContainer {
+      margin-bottom: 8px;
+      margin-left: 6px;
     }
   }
   .amap-home{

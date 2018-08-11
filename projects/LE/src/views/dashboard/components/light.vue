@@ -1,7 +1,7 @@
 <template>
   <div class="light">
     <div class="light-info"></div>
-    <!--<button>开关</button>-->
+    <div class="switch"></div>
     <div class="slider">
       <span class="dimming-value">{{ value }}%</span>
       <el-slider
@@ -10,7 +10,6 @@
         :show-tooltip="false"
         vertical>
       </el-slider>
-      <span class="dimming-label">智能调光</span>
     </div>
   </div>
 </template>
@@ -31,8 +30,8 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
   /* reset element-ui css */
   .dimming-slider {
-    height: 110px;
-    margin-right: 5px;
+    height: 200px;
+    margin-right: 7px;
     .el-slider__button {
       height: 10px;
       border: none;
@@ -47,6 +46,42 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .light {
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 100%;
+    .switch{
+      cursor: pointer;
+      display:inline-block;
+      width: 120px;
+      height: 120px;
+      margin-right: 8%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-image: url('../../../assets/home/light-1.png');
+      &.disabled{
+        background-image: url('../../../assets/home/light-1-2.png');
+      }
+    }
+    .slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 300px;
+      background-image: url("../../../assets/func/bg_dimming.png");
+      background-size: 100% 100%;
+      color: #fff;
+      .dimming-value {
+        padding-bottom: 10px;
+      }
+      .dimming-label {
+        padding-top: 10px;
+      }
+    }
   }
 </style>

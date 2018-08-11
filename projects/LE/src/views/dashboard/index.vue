@@ -42,6 +42,7 @@
         this.isShow = true
         this.selectItem = item
         this.$store.commit('SET_CENTER', this.selectItem)
+        this.$store.commit('SET_MARKERTITLE', this.selectItem.name)
         this.$router.push({
           path: `/dashboard/light`
         })
@@ -49,13 +50,14 @@
       },
       // 监听地图坐标点击事件
       clickMarker(type) {
+        this.isShow = true
         this.$router.push({
           path: `/dashboard/${type}`
         })
-        this.isShow = true
       },
       // 监听左边功能菜单点击事件
       selectFunc(type) {
+        this.isShow = false
         this.iconType = type
         this.$router.push({
           path: `/dashboard/${type}`
@@ -176,7 +178,12 @@
                   nodeName: mItem.name,
                   nodeCode: mItem.code,
                   position: [mItem.longitude, mItem.latitude],
-                  content: '<img class="img-marker" src="' + imgSrc + '" alt="">'
+                  content: '<img class="img-marker" src="' + imgSrc + '" alt="">',
+                  events: {
+                    click() {
+                      this.$store.commit('SET_MARKERTITLE', mItem.name)
+                    }
+                  }
                 })
               })
             }
