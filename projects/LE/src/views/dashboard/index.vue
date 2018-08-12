@@ -208,6 +208,7 @@
     .operation {
       position: absolute;
       width: 40%;
+      min-width: 450px;
       top: 10px;
       bottom: 30px;
       left: 115px;

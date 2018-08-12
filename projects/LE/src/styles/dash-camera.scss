@@ -1,0 +1,169 @@
+$ptzImg:'../assets/func/ptz_dir.png';
+$ptzHover:'../assets/func/ptz_dir_hover.png';
+
+.camera {
+  width: 100%;
+  height: 103%;
+  color: #fff;
+  .camera-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 28%;
+    .camera-img {
+      display: inline-block;
+      float: left;
+      width: 23%;
+      height: 89%;
+      margin-right: 15%;
+      background-image: url('../assets/func/camera.png');
+      background-size: 100% 100%;
+    }
+    .camera-info {
+      display: inline-block;
+      float: left;
+      .title {
+        margin-bottom: 16px;
+        font-size: 19px;
+      }
+      .info {
+        height: 25px;
+        line-height: 25px;
+
+      }
+    }
+  }
+  .camera-video {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    .player {
+      width: 75%;
+      height: 96%;
+      background-image: url('../assets/func/camera_video.png');
+      background-size: 100% 100%;
+    }
+    .play {
+      width: 20%;
+      height: 96%;
+      border-radius: 5px;
+      background-image: url('../assets/func/bg_item.png');
+    }
+
+  }
+  .camera-operation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 32%;
+    .ptz-speed{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 120px;
+      height: 98%;
+      background-image: url('../assets/func/bg_speed.png');
+      background-size: 100% 100%;
+      .ptz-slider {
+        height: 63%;
+        margin-top: 20%;
+        margin-left: 3%;
+      }
+    }
+    .lens-operation {
+      display: flex;
+      width: calc(80% - 213px);
+      height: 98%;
+      padding: 10px;
+      border-radius: 5px;
+      background-image: url('../assets/func/bg_item.png');
+    }
+    /*云台控制*/
+    .ptz-operation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 160px;
+      height: 98%;
+      border-radius: 5px;
+      background-image: url('../assets/func/bg_item.png');
+    }
+    .directions {
+      display: inline-block;
+      width: 153px;
+      height: 152px;
+      margin-top: 4px;
+      cursor: pointer;
+      .direction {
+        display: inline-block;
+        float: left;
+        width: 51px;
+        height: 50px;
+      }
+      .left-up {
+        background: url($ptzImg) 0 0;
+        &:hover{
+          background: url($ptzHover) 0 0;
+        }
+      }
+      .up {
+        background: url($ptzImg) 104px 0;
+        &:hover{
+          background: url($ptzHover) 104px 0;
+        }
+      }
+      .right-up {
+        background: url($ptzImg) 51px 0;
+        &:hover{
+          background: url($ptzHover) 51px 0;
+        }
+      }
+      .left {
+        background: url($ptzImg) 0 104px;
+        &:hover{
+          background: url($ptzHover) 0 104px;
+        }
+      }
+      .center {
+        background: url($ptzImg) 104px 104px;
+        &:hover{
+          background: url($ptzHover) 104px 104px;
+        }
+      }
+      .right {
+        background: url($ptzImg) 51px 104px;
+        &:hover{
+          background: url($ptzHover) 51px 104px;
+        }
+      }
+      .left-down {
+        background: url($ptzImg) 0 50px;
+        &:hover{
+          background: url($ptzHover) 0 50px;
+        }
+      }
+      .down {
+        background: url($ptzImg) 104px 50px;
+        &:hover{
+          background: url($ptzHover) 104px 50px;
+        }
+      }
+      .right-down {
+        background: url($ptzImg) 51px 50px;
+        &:hover{
+          background: url($ptzHover) 51px 50px;
+        }
+      }
+    }
+  }
+}
+
