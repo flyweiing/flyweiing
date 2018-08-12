@@ -15,8 +15,11 @@
         <my-camera></my-camera>
       </div>
       <div class="play">
-        <div></div>
-        <span>暂停</span>
+        <div class="circle">
+          <svg-icon icon-class="pause-circle" />
+          <span>暂停</span>
+        </div>
+
       </div>
     </div>
     <div class="camera-operation">

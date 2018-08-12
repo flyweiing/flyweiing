@@ -1,6 +1,6 @@
 const getters = {
   center: state => state.app.center,
-  markerTitle: state => state.app.markerTitle,
+  selectedNode: state => state.app.selectedNode,
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   name: state => state.user.name,

@@ -49,10 +49,19 @@ $ptzHover:'../assets/func/ptz_dir_hover.png';
       background-size: 100% 100%;
     }
     .play {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 20%;
       height: 96%;
       border-radius: 5px;
       background-image: url('../assets/func/bg_item.png');
+      .svg-icon {
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
     }
 
   }

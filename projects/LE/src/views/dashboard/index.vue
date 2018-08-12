@@ -42,7 +42,7 @@
         this.isShow = true
         this.selectItem = item
         this.$store.commit('SET_CENTER', this.selectItem)
-        this.$store.commit('SET_MARKERTITLE', this.selectItem.name)
+        this.$store.commit('SET_SELECTNNODE', this.selectItem)
         this.$router.push({
           path: `/dashboard/light`
         })
@@ -181,7 +181,7 @@
                   content: '<img class="img-marker" src="' + imgSrc + '" alt="">',
                   events: {
                     click() {
-                      this.$store.commit('SET_MARKERTITLE', mItem.name)
+                      this.$store.commit('SET_SELECTNODE', mItem)
                     }
                   }
                 })

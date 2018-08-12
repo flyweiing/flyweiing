@@ -15,7 +15,7 @@
       <!--坐标点标题弹出框-->
       <el-amap-info-window
         :position="this.$store.getters.center"
-        :content="this.$store.getters.markerTitle"
+        :content="this.$store.getters.selectedNode.name"
         :visible="windowVisible">
       </el-amap-info-window>
     </el-amap>
@@ -50,7 +50,7 @@
       return {
         zoom: 16,
         markerRefs: [],
-        windowVisible: false,
+        windowVisible: true,
         events: {
           click: () => {
             this.windowVisible = true
