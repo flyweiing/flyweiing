@@ -40,9 +40,6 @@ export default {
       'selectedNode'
     ])
   },
-  mounted() {
-    console.log(this.selectedNode.name)
-  },
   methods: {
     clickSwitch() { // 开关灯操作
       const _this = this

@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <dash-aside @select="selectNode" :itemList="allList"></dash-aside>
     <menu-tab @select="selectFunc"></menu-tab>
-    <amap @select="clickMarker" :markers="mapItem" :markerType="iconType"></amap>
+    <amap :markers="mapItem" :markerType="iconType"></amap>
     <div class="operation" v-show="isShow">
       <i class="close el-icon-close" @click="close()"></i>
       <div class="func-module">
@@ -37,128 +37,205 @@
       close() {
         this.isShow = false
       },
-      // 监听灯杆列表点击时间
+      // 监听灯杆列表点击事件
       selectNode(item) {
-        this.isShow = true
-        this.selectItem = item
-        this.$store.commit('SET_CENTER', this.selectItem)
-        this.$store.commit('SET_SELECTNNODE', this.selectItem)
-        this.$router.push({
+        const _this = this
+        _this.isShow = true
+        _this.selectItem = item
+        _this.$store.commit('SET_CENTER', _this.selectItem)
+        _this.$store.commit('SET_SELECTNNODE', _this.selectItem)
+        _this.$store.commit('SET_MAPWINDOWSHOW', true)
+        _this.$router.push({
           path: `/dashboard/light`
         })
-        this.mapItem = this.selectLight
-      },
-      // 监听地图坐标点击事件
-      clickMarker(type) {
-        this.isShow = true
-        this.$router.push({
-          path: `/dashboard/${type}`
-        })
+        _this.mapItem = _this.selectLight
       },
       // 监听左边功能菜单点击事件
       selectFunc(type) {
-        this.isShow = false
-        this.iconType = type
-        this.$router.push({
+        const _this = this
+        _this.isShow = false
+        _this.iconType = type
+        _this.$store.commit('SET_MAPWINDOWSHOW', false)
+        _this.$router.push({
           path: `/dashboard/${type}`
         })
         if (type === 'light') {
-          this.mapItem = this.selectLight
+          _this.mapItem = _this.selectLight
         }
         // 一下数据为模拟个个功能模块的地图坐标数据
         if (type === 'camera') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/camera_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/camera_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'led') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/led_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/led_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'wifi') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/wifi_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/wifi_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'charger') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/charger_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/charger_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'airing') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/airing_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/airing_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'help') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/help_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/help_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'rgb') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/rgb_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/rgb_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
         if (type === 'usb') {
-          this.mapItem = [
+          _this.mapItem = [
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/usb_on.png') + ' alt="">',
-              position: [113.802454, 22.682169]
+              position: [113.802454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             },
             {
               content: '<img class="img-marker" src=' + require('@/assets/icons/usb_off.png') + ' alt="">',
-              position: [113.804454, 22.682169]
+              position: [113.804454, 22.682169],
+              events: {
+                click() { // 地图点击事件
+                  _this.isShow = true
+                }
+              }
             }
           ]
         }
@@ -180,8 +257,14 @@
                   position: [mItem.longitude, mItem.latitude],
                   content: '<img class="img-marker" src="' + imgSrc + '" alt="">',
                   events: {
-                    click() {
-                      this.$store.commit('SET_SELECTNODE', mItem)
+                    click() { // 地图点击事件
+                      _this.$store.commit('SET_CENTER', mItem)
+                      _this.$store.commit('SET_SELECTNNODE', mItem)
+                      _this.$store.commit('SET_MAPWINDOWSHOW', true)
+                      _this.$router.push({
+                        path: `/dashboard/light`
+                      })
+                      _this.isShow = true
                     }
                   }
                 })

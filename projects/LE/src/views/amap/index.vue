@@ -10,13 +10,13 @@
                       :key="marker.nodeCode"
                       :position="marker.position"
                       :content="marker.content"
-                      :events="events">
+                      :events="marker.events">
       </el-amap-marker>
       <!--坐标点标题弹出框-->
       <el-amap-info-window
         :position="this.$store.getters.center"
         :content="this.$store.getters.selectedNode.name"
-        :visible="windowVisible">
+        :visible="this.$store.getters.mapWindowShow">
       </el-amap-info-window>
     </el-amap>
   </div>
@@ -49,14 +49,7 @@
     data() {
       return {
         zoom: 16,
-        markerRefs: [],
-        windowVisible: true,
-        events: {
-          click: () => {
-            this.windowVisible = true
-            this.$emit('select', this.markerType)
-          }
-        }
+        markerRefs: []
       }
     },
     mothons: {
