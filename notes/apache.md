@@ -50,8 +50,8 @@ vim /etc/httpd/conf/httpd.conf
 ```
 
 修改监听端口（默认是80端口）
-![demo](https://github.com/flyweiing/flyweiing/blob/master/notes/images/apache5.png)
+![demo](https://github.com/flyweiing/flyweiing/blob/master/notes/images/apache5.jpg)
 修改根目录
-![demo](https://github.com/flyweiing/flyweiing/blob/master/notes/images/apache3.png)
+![demo](https://github.com/flyweiing/flyweiing/blob/master/notes/images/apache3.jpg)
 
 修改重启服务器service httpd restart
