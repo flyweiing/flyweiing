@@ -41,7 +41,31 @@ var once = function (fn) {
 var b = once(test);
 b(); // 'test'
 b(); // nothing
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
 
 //JS里判断一个对象oStringObject是否为String
 var oStringObject = new String('hello world');
 console.log(oStringObject instanceof String) //true
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+var a = [{'p1': 88}, {'p2': 89}, {'p3': 99}, {'p4': 78}, {'p5': 87}, {'p6': 85}, {'p7': 87}, {'p8': 95}, {'p9': 90}, {'p10': 80}],
+    b = [];
+a.forEach(function (value, index) {
+  var i = 'p' + (index + 1);
+  b.push(value[i]);
+})
+b.sort().pop(); //去掉最高分
+b.shift(); //去掉最低分
+
+var avg = '',
+    sum = 0;
+b.forEach(function (value) {
+  sum += value;
+})
+avg = sum/b.length;
+console.log(avg);
+//--------------------------------------------------------------------------------------------------------------------------------
