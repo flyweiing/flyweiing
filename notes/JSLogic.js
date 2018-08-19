@@ -69,3 +69,26 @@ b.forEach(function (value) {
 avg = sum/b.length;
 console.log(avg);
 //--------------------------------------------------------------------------------------------------------------------------------
+
+
+var arr1 = [typeof 3, typeof undefined, typeof null, typeof [], typeof new String('123'),  new String('123') instanceof String , typeof typeof 1]
+console.log(arr1) //["number", "undefined", "object", "object", "object", true, "string"]
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
+(function () {
+    try {
+        throw new Error();
+    } catch (x) {
+        var x = 1, y = 2;
+        console.log(x);
+    }
+    console.log(x);
+    console.log(y);
+})();
+
+// 输出的结果是：
+// 1
+// undefined
+// 2
+//--------------------------------------------------------------------------------------------------------------------------------
