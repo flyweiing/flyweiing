@@ -39,14 +39,95 @@
         minute=0;
         hour=hour+1;
       }
-      document.getElementById('timetext').value=hour+'时'+minute+'分'+second+'秒'+millisecond+'毫秒';
+      document.getElementById('timetext').value=format(hour)+'时'+format(minute)+'分'+format(second)+'秒'+millisecond+'毫秒';
  
+    }
+
+    function format(n) {
+        n = n.toString()
+        return n[1] ? n : '0' + n
     }
  
     function stop()//暂停
     {
       window.clearInterval(int);
     }
+
+    // const formatTime = date => {
+    //   const year = date.getFullYear()
+    //   const month = date.getMonth() + 1
+    //   const day = date.getDate()
+    //   const hour = date.getHours()
+    //   const minute = date.getMinutes()
+    //   const second = date.getSeconds()
+
+    //   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    // }
+
+    // const formatNumber = n => {
+    //   n = n.toString()
+    //   return n[1] ? n : '0' + n
+    // }
+
+    // const formatMill = n => {
+    //   n = n.toString()
+    //   n = n.substring(0, 2)
+    //   return n[1] ? n : '0' + n
+    // }
+
+    // module.exports = {
+    //   formatTime: formatTime,
+    //   formatNumber: formatNumber,
+    //   formatMill: formatMill
+    // }
+    
+
+    // 极限挑战
+    // const util = require('../../utils/util.js')
+
+    // Page({
+    //   data: {
+    //     currentTime: '00:00',
+    //     btnStatus: true, //true为开始状态按钮
+    //     timer: '',
+    //     millisecond: 0,
+    //     second: 0,
+    //   },
+    //   bindStart: function() {
+    //     this.setData({
+    //       btnStatus: true
+    //     })
+    //     clearInterval(this.data.timer);
+    //   },
+    //   bindStop: function() {
+    //     this.setData({
+    //       btnStatus: false,
+    //       timer: setInterval(this._timer, 50)
+    //     })
+    //   },
+    //   onLoad: function() {
+
+    //   },
+    //   _timer: function() {
+    //     let millisecond = this.data.millisecond;
+    //     let second = this.data.second;
+    //     this.setData({
+    //       millisecond: millisecond + 50
+    //     })
+    //     if (millisecond >= 1000) {
+    //       this.setData({
+    //         millisecond: 0
+    //       })
+    //       this.setData({
+    //         second: second + 1
+    //       })
+    //     }
+    //     this.setData({
+    //       currentTime: util.formatNumber(second) + ':' + util.formatMill(millisecond)
+    //     })
+    //   }
+
+    // })
   </script>
 </head>
 <body>
