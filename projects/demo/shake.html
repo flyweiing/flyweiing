@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<style>
+    @-webkit-keyframes shake {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes shake{
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .shake {
+    	text-decoration: underline;
+        -webkit-animation: shake 2s infinite;
+        animation: shake 2s infinite;
+    }
+</style>
+<h1 class="shake">hello world</h1>
+</body>
+</html>
