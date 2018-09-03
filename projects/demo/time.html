@@ -1,139 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>计时器</title>
   <script>
-    var hour,minute,second;//时 分 秒
-    hour=minute=second=0;//初始化
-    var millisecond=0;//毫秒
+    var hour, minute, second;//时 分 秒
+    hour = minute = second = 0;//初始化
+    var millisecond = 0;//毫秒
     var int;
     function Reset()//重置
     {
       window.clearInterval(int);
-      millisecond=hour=minute=second=0;
-      document.getElementById('timetext').value='00时00分00秒000毫秒';
+      millisecond = hour = minute = second = 0;
+      document.getElementById('timetext').value = '00时00分00秒000毫秒';
     }
- 
+
     function start()//开始
     {
-      int=setInterval(timer,50);
+      int = setInterval(timer, 50);
     }
- 
+
     function timer()//计时
     {
-      millisecond=millisecond+50;
-      if(millisecond>=1000)
-      {
-        millisecond=0;
-        second=second+1;
+      millisecond = millisecond + 50;
+      if (millisecond >= 1000) {
+        millisecond = 0;
+        second = second + 1;
       }
-      if(second>=60)
-      {
-        second=0;
-        minute=minute+1;
+      if (second >= 60) {
+        second = 0;
+        minute = minute + 1;
       }
- 
-      if(minute>=60)
-      {
-        minute=0;
-        hour=hour+1;
+
+      if (minute >= 60) {
+        minute = 0;
+        hour = hour + 1;
       }
-      document.getElementById('timetext').value=format(hour)+'时'+format(minute)+'分'+format(second)+'秒'+millisecond+'毫秒';
- 
+      document.getElementById('timetext').value = format(hour) + '时' + format(minute) + '分' + format(second) + '秒' + millisecond + '毫秒';
+
     }
 
     function format(n) {
-        n = n.toString()
-        return n[1] ? n : '0' + n
+      n = n.toString()
+      return n[1] ? n : '0' + n
     }
- 
+
     function stop()//暂停
     {
       window.clearInterval(int);
     }
 
-    // const formatTime = date => {
-    //   const year = date.getFullYear()
-    //   const month = date.getMonth() + 1
-    //   const day = date.getDate()
-    //   const hour = date.getHours()
-    //   const minute = date.getMinutes()
-    //   const second = date.getSeconds()
-
-    //   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-    // }
-
-    // const formatNumber = n => {
-    //   n = n.toString()
-    //   return n[1] ? n : '0' + n
-    // }
-
-    // const formatMill = n => {
-    //   n = n.toString()
-    //   n = n.substring(0, 2)
-    //   return n[1] ? n : '0' + n
-    // }
-
-    // module.exports = {
-    //   formatTime: formatTime,
-    //   formatNumber: formatNumber,
-    //   formatMill: formatMill
-    // }
-    
-
-    // 极限挑战
-    // const util = require('../../utils/util.js')
-
-    // Page({
-    //   data: {
-    //     currentTime: '00:00',
-    //     btnStatus: true, //true为开始状态按钮
-    //     timer: '',
-    //     millisecond: 0,
-    //     second: 0,
-    //   },
-    //   bindStart: function() {
-    //     this.setData({
-    //       btnStatus: true
-    //     })
-    //     clearInterval(this.data.timer);
-    //   },
-    //   bindStop: function() {
-    //     this.setData({
-    //       btnStatus: false,
-    //       timer: setInterval(this._timer, 50)
-    //     })
-    //   },
-    //   onLoad: function() {
-
-    //   },
-    //   _timer: function() {
-    //     let millisecond = this.data.millisecond;
-    //     let second = this.data.second;
-    //     this.setData({
-    //       millisecond: millisecond + 50
-    //     })
-    //     if (millisecond >= 1000) {
-    //       this.setData({
-    //         millisecond: 0
-    //       })
-    //       this.setData({
-    //         second: second + 1
-    //       })
-    //     }
-    //     this.setData({
-    //       currentTime: util.formatNumber(second) + ':' + util.formatMill(millisecond)
-    //     })
-    //   }
-
-    // })
+    //倒计时
+    function leftTimer(year, month, day, hour, minute, second) {
+      var leftTime = (new Date(year, month - 1, day, hour, minute, second)) - (new Date()); //计算剩余的毫秒数
+      if (leftTime <= 0)
+        return;
+      var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
+      var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
+      var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+      var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
+      days = format(days);
+      hours = format(hours);
+      minutes = format(minutes);
+      seconds = format(seconds);
+      document.getElementById("timer").innerHTML = days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
+    }
+    function onloadTime() {
+      setInterval("leftTimer(2018,9,11,00,00,00)", 1000);
+    }
   </script>
 </head>
-<body>
-<div style="text-align: center">
-  <input type="text" id="timetext" value="00时00分00秒" readonly><br>
-  <button type="button" onclick="start()">开始</button> <button type="button" onclick="stop()">暂停</button> <button type="button" onclick="Reset()">重置</button>
-</div>
+
+<body onload="onloadTime()">
+  <div style="text-align: center">
+    <input type="text" id="timetext" value="00时00分00秒" readonly><br>
+    <button type="button" onclick="start()">开始</button> <button type="button" onclick="stop()">暂停</button> <button type="button"
+      onclick="Reset()">重置</button>
+  </div>
+  <h2>剩余时间:</h2>
+  <div id="timer"></div>
 </body>
+
 </html>
